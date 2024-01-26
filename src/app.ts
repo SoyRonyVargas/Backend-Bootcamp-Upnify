@@ -1,47 +1,11 @@
 import express, { Request, Response , Application } from 'express';
-import { getConnection } from './database';
+import { getConnection, pool } from './database';
+import Alumno from './models/alumno';
 
 const app: Application = express();
 const port = process.env.PORT || 8000;
 
-
-
-const data = [
-  {
-    "nombre": "Rony",
-    "apellido": "Vargas",
-    "matricula": "202200505",
-    "carrera": "ingenieria en software"
-  },
-  {
-    "nombre": "Laura",
-    "apellido": "Gómez",
-    "matricula": "202200512",
-    "carrera": "ciencias de la computación"
-  },
-  {
-    "nombre": "Carlos",
-    "apellido": "Martínez",
-    "matricula": "202200518",
-    "carrera": "ingeniería electrónica"
-  },
-  {
-    "nombre": "Ana",
-    "apellido": "López",
-    "matricula": "202200525",
-    "carrera": "ingeniería industrial"
-  },
-  {
-    "nombre": "David",
-    "apellido": "García",
-    "matricula": "202200531",
-    "carrera": "matemáticas aplicadas"
-  }
-]
-
 app.get('/', async (req: Request, res: Response) => {
-
-  // const [rows, fields] = await pool.query('SELECT * FROM `tabla`');
 
   res.json({
     msg: 'servidor corriendo',
@@ -56,11 +20,29 @@ app.post('/', (req: Request, res: Response) => {
   });
 });
 
-app.get('/alumno', (req: Request, res: Response) => {
-  res.json(data[0]);
+app.post('/alumno', async (req: Request, res: Response) => {
+  
+  try
+  {
+    const jane = Alumno.build({ UNAL_NOMBRE: "Jane" , UNAL_APELLIDO: 'test' });
+
+    await jane.save()
+
+    console.log(jane);
+
+    res.json(jane.toJSON())
+
+  }
+  catch(err)
+  {
+    res.json({
+      err
+    })
+  }
+  
 });
 app.get('/alumnos', (req: Request, res: Response) => {
-  res.json(data);
+  res.json([]);
 });
 
 app.get('/peticiones', (req: Request, res: Response) => {
@@ -80,7 +62,7 @@ app.get('/peticiones', (req: Request, res: Response) => {
 app.listen(port, async () => {
   
   await getConnection()
-
+  
   console.log(`Server is Fire at http://localhost:${port}`);
   
 });
