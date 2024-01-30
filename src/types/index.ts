@@ -3,7 +3,6 @@ import { NextFunction, Request , Response } from "express";
 import { IncomingHttpHeaders } from "http";
 // import { JwtPayload } from "jsonwebtoken"
 
-
 // export type JWTAuthPayload = JwtPayload & {
 //   id: string
 // }

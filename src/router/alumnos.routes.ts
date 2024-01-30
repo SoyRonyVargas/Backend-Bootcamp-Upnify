@@ -33,4 +33,19 @@ router.get('/all', async (req: Request, res: Response) => {
     }
 });
 
+router.get('/peticiones', (req: Request, res: Response) => {
+  
+    const endpoints = [
+    { endpoint: '/', description: 'Devuelve un mensaje indicando que el servidor está corriendo.' },
+    { endpoint: '/alumno', description: 'Devuelve los datos del primer alumno.' },
+    { endpoint: '/alumnos', description: 'Devuelve un listado de todos los alumnos.' },
+    { endpoint: '/peticiones', description: 'Devuelve un listado de los otros endpoints y sus descripciones.' }
+  ];
+
+  res.json({
+    endpoints
+  });
+  
+});
+
 export default router;
