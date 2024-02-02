@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { sequelize } from '../database';
-
+import { CreateStudent, EditStudent, RemoveStudent } from '../controllers/alumno.controller';
 const router = Router();
 
 router.get('/all', async (req: Request, res: Response) => {
@@ -32,6 +32,10 @@ router.get('/all', async (req: Request, res: Response) => {
         });
     }
 });
+
+router.post("/create", CreateStudent )
+router.delete("/:id", RemoveStudent )
+router.put("/update", EditStudent )
 
 router.get('/peticiones', (req: Request, res: Response) => {
   

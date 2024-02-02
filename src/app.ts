@@ -18,8 +18,8 @@ const app: Application = express();
 const port = process.env.PORT || 8000;
 
 dotenv.config()
-
-app.use("/alumnos", alumnosRouter)
+app.use(express.json())
+app.use("/alumno", alumnosRouter)
 app.use("/materia", materiaRouter)
 
 const getConnection = async () => {

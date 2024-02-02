@@ -14,7 +14,7 @@ type CustomRequest<T ,T2, TBody , PayloadType> = Request<T ,T2, TBody> & {
   }
 }
 
-export type TypedRequest<T , BodyRequest , PayloadBody = any , ReqParams = any> = (
+export type TypedRequest<T , BodyRequest = null , PayloadBody = any , ReqParams = any> = (
   ( 
     req: CustomRequest<ReqParams , any, BodyRequest, PayloadBody> , 
     res: Response<BasicResponse<T>> , 
