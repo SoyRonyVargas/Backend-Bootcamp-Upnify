@@ -1,10 +1,7 @@
-# Proyecto de Backend con Express y Sequelize
+# Proyecto de Express con TypeScript - Bootcamp de Upnify 2024
 
-Este es un proyecto de backend desarrollado con Express y Sequelize para una aplicación de gestión académica.
 
-## Descripción
-
-Este backend fue diseñado para satisfacer las necesidades de una aplicación de gestión académica. Proporciona endpoints para gestionar alumnos, materias y calificaciones.
+Este es un proyecto de ejemplo para el bootcamp de Upnify que utiliza Express.js con TypeScript para construir una aplicación web.
 
 ## Instalación
 
