@@ -28,7 +28,7 @@ const Usuario = sequelize.define(
     },
   },
   {
-    tableName: "Usuarios",
+    tableName: "USUARIOS",
     modelName: "Usuario",
     timestamps: false // Desactiva las columnas de timestamp
   }
