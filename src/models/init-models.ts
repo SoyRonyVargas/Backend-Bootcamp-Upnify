@@ -1,4 +1,6 @@
 import type { Sequelize } from "sequelize";
+import { Categoria as _Categoria } from "./Categoria";
+import type { CategoriaAttributes, CategoriaCreationAttributes } from "./Categoria";
 import { Cliente as _Cliente } from "./Cliente";
 import type { ClienteAttributes, ClienteCreationAttributes } from "./Cliente";
 import { Cuenta as _Cuenta } from "./Cuenta";
@@ -13,6 +15,7 @@ import { TblMaterium as _TblMaterium } from "./TblMaterium";
 import type { TblMateriumAttributes, TblMateriumCreationAttributes } from "./TblMaterium";
 
 export {
+  _Categoria as Categoria,
   _Cliente as Cliente,
   _Cuenta as Cuenta,
   _CuentasDetalle as CuentasDetalle,
@@ -22,6 +25,8 @@ export {
 };
 
 export type {
+  CategoriaAttributes,
+  CategoriaCreationAttributes,
   ClienteAttributes,
   ClienteCreationAttributes,
   CuentaAttributes,
@@ -37,6 +42,7 @@ export type {
 };
 
 export function initModels(sequelize: Sequelize) {
+  const Categoria = _Categoria.initModel(sequelize);
   const Cliente = _Cliente.initModel(sequelize);
   const Cuenta = _Cuenta.initModel(sequelize);
   const CuentasDetalle = _CuentasDetalle.initModel(sequelize);
@@ -46,6 +52,7 @@ export function initModels(sequelize: Sequelize) {
 
 
   return {
+    Categoria: Categoria,
     Cliente: Cliente,
     Cuenta: Cuenta,
     CuentasDetalle: CuentasDetalle,

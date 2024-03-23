@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import { sequelize } from './database';
 
 // ROUTERS
+import categoriasRouter from './router/categoria.routes'
 import proveedoresRouter from './router/proveedores.routes'
 import usuariosRouter from './router/usuarios.routes'
 import clientesRouter from './router/clientes.routes'
@@ -29,9 +30,9 @@ app.use(express.static('./src/public'))
 app.use("/auth", authRouter)
 // app.use(MiddlewareTokenValidator)
 app.use("/usuarios", usuariosRouter)
-// app.use("/usuarios", usuariosRouter)
 app.use("/clientes", clientesRouter)
 app.use("/proveedores", proveedoresRouter)
+app.use("/categorias", categoriasRouter)
 
 app.listen(port, async () => {
   
