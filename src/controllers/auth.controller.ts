@@ -1,4 +1,4 @@
-import { generateJWT } from "../utils/generateJWT";
+import { generateJWT, genGWT } from "../utils/generateJWT";
 import { Usuario } from "../models/Usuario";
 import { Controller } from "../types";
 
@@ -24,7 +24,7 @@ export const AuthLoginCtrl : Controller<any, AuthLoginDTO> = async (req, res) =>
             ok: false
         })
 
-        const token = await generateJWT(usuario.IDUSUARIO)
+        const token = await genGWT(usuario.IDUSUARIO)
 
         return res.status(200).json({
             data: {

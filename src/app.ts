@@ -11,6 +11,7 @@ import authRouter from './router/auth.routes'
 
 import { getConnection } from './database/getConnection';
 import { initModels } from './models/init-models';
+import { MiddlewareTokenValidator } from './middlewares/MiddlewareTokenValidator.middleware';
 // import { initModels } from './models/init-models';
 
 const app: Application = express();
@@ -25,6 +26,7 @@ app.use(express.static('public'))
 app.use(express.static('./src/public'))
 
 app.use("/auth", authRouter)
+app.use(MiddlewareTokenValidator)
 app.use("/usuarios", usuariosRouter)
 app.use("/clientes", clientesRouter)
 

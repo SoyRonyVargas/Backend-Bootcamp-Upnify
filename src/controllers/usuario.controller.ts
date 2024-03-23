@@ -50,8 +50,10 @@ export const createUsuarioCtrl : Controller<any, CreateUsuarioDTO> = async (req,
         })
 
         const usuarioCreado = await Usuario.create({
-            IDUSUARIO: 2,
-            ...payload
+            CONTRASENIA: payload.CONTRASENIA,
+            APELLIDOS: payload.APELLIDOS,
+            CORREO: payload.CORREO,
+            NOMBRE: payload.NOMBRE
         })
         
 

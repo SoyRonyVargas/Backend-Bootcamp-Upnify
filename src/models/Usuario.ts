@@ -11,7 +11,7 @@ export interface UsuarioAttributes {
 
 export type UsuarioPk = "IDUSUARIO";
 export type UsuarioId = Usuario[UsuarioPk];
-export type UsuarioOptionalAttributes = "NOMBRE" | "APELLIDOS" | "CORREO" | "CONTRASENIA";
+export type UsuarioOptionalAttributes = "IDUSUARIO" | "NOMBRE" | "APELLIDOS" | "CORREO" | "CONTRASENIA";
 export type UsuarioCreationAttributes = Optional<UsuarioAttributes, UsuarioOptionalAttributes>;
 
 export class Usuario extends Model<UsuarioAttributes, UsuarioCreationAttributes> implements UsuarioAttributes {
@@ -25,6 +25,7 @@ export class Usuario extends Model<UsuarioAttributes, UsuarioCreationAttributes>
   static initModel(sequelize: Sequelize.Sequelize): typeof Usuario {
     return Usuario.init({
     IDUSUARIO: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
@@ -51,6 +52,13 @@ export class Usuario extends Model<UsuarioAttributes, UsuarioCreationAttributes>
     schema: 'dbo',
     timestamps: false,
     indexes: [
+      {
+        name: "PK__tmp_ms_x__98242AA9FCD8A509",
+        unique: true,
+        fields: [
+          { name: "IDUSUARIO" },
+        ]
+      },
       {
         name: "PK__USUARIOS__98242AA90D1C7687",
         unique: true,
