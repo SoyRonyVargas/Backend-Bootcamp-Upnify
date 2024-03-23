@@ -1,4 +1,4 @@
-import { createUsuarioCtrl, getUsuariosCtrl } from '../controllers/usuario.controller';
+import { actualizarUsuarioCtrl, createUsuarioCtrl, eliminarUsuarioCtrl, getUsuariosCtrl } from '../controllers/usuario.controller';
 import { Router } from 'express';
 import { handleValidationErrors } from '../middlewares/validate.middleware';
 import { validations } from '../validations/usuario.validation';
@@ -12,6 +12,20 @@ router.get(
     validations.create,
     handleValidationErrors,
     createUsuarioCtrl
+);
+
+router.put(
+    '/edit',
+    validations.edit,
+    handleValidationErrors,
+    actualizarUsuarioCtrl
+);
+
+router.delete(
+    '/:IDUSUARIO',
+    validations.delete,
+    handleValidationErrors,    
+    eliminarUsuarioCtrl
 );
 
 export default router;

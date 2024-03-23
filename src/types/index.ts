@@ -17,7 +17,7 @@ export type CustomRequest<T, T2, TBody, PayloadType, ReqQuery> = Request<T, T2, 
 }
 
 // Tipo para controladores de Express que toman y devuelven diferentes tipos de datos
-export type Controller<TResponse = any, BodyRequest = null, PayloadBody = JWTAuthPayload, ReqParams = any, ReqQuery = any> = (
+export type Controller<TResponse = any, BodyRequest = null, ReqParams = any, ReqQuery = any, PayloadBody = JWTAuthPayload> = (
   (
     req: CustomRequest<ReqParams, any, BodyRequest, PayloadBody | JWTAuthPayload, ReqQuery>,
     res: Response<BasicResponse<TResponse>>,
