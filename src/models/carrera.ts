@@ -1,5 +1,5 @@
 import { sequelize } from "../database";
-import { DataTypes, Sequelize } from "sequelize";
+import { DataTypes } from "sequelize";
 
 const Carrera = sequelize.define(
   "Carrera",

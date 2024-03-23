@@ -8,48 +8,20 @@ import { sequelize } from './database';
 import Calificaciones from './models/calificaciones';
 import Carrera from './models/carrera';
 import Materia from './models/materia';
-import Alumno from './models/alumno';
+import Alumno from './models/usuario.model';
 
 // ROUTERS
-import alumnosRouter from './router/alumnos.routes'
+import usuariosRouter from './router/usuarios.routes'
 import materiaRouter from './router/materia.routes'
+import { getConnection } from './database/getConnection';
 
 const app: Application = express();
 const port = process.env.PORT || 8000;
 
 dotenv.config()
 
-app.use("/alumnos", alumnosRouter)
+app.use("/usuarios", usuariosRouter)
 app.use("/materia", materiaRouter)
-
-const getConnection = async () => {
-  
-  try {
-
-    await sequelize.authenticate();
-
-    await sequelize.query('SET FOREIGN_KEY_CHECKS = 0');
-
-    await sequelize.sync();
-    
-    await Alumno.sync();
-    await Carrera.sync();
-    await Materia.sync();
-    await Calificaciones.sync();
-
-    await sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
-    
-    console.clear()
-
-    console.log("Modelos actualizados");
-
-  } 
-  catch (error) 
-  {
-    console.error('Unable to connect to the database:', error);
-  }
-
-}
 
 app.listen(port, async () => {
   

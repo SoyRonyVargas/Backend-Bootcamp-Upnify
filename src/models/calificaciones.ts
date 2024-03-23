@@ -1,7 +1,7 @@
 import { sequelize } from "../database";
 import { DataTypes } from "sequelize";
 import Materia from "./materia";
-import Alumno from "./alumno";
+import Alumno from "./usuario.model";
 
 const Calificaciones = sequelize.define(
     "Calificaciones",

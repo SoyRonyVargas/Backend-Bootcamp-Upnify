@@ -1,0 +1,19 @@
+{
+  "database": "BOOTCAMP2024",
+  "username": "bootcamp",
+  "password": "Bootcamp2024",
+  "host": "develop.salesup.com.mx",
+  "dialect": "mssql",
+  "port": 1433,
+  "lang": "ts",
+  "output": "./src/models",
+  "singularize": "true",
+  "caseModel": "p",
+  "caseFile": "p",
+  "dialectOptions": {
+    "options": {
+      "encrypt": false,
+      "trustServerCertificate": true
+    }
+  }
+}

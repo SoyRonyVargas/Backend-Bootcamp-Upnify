@@ -1,16 +1,18 @@
 import { Sequelize } from 'sequelize'
 
-export const sequelize = new Sequelize( 
-  "cliente_servidor" || '', 
-  process.env.DBUSER ?? 'root', 
-  process.env.DBPASSWORD || '', 
+export const sequelize = new Sequelize(
+  'BOOTCAMP2024',
+  'bootcamp',
+  'Bootcamp2024',
   {
-    host: process.env.DBHOST,
-    dialect: 'mysql',
-    port: 3306,
-    // sync: {
-    //   force: true
-    // }
+    host: 'develop.salesup.com.mx',
+    dialect: 'mssql',
+    port: 1433,
+    dialectOptions: {
+        options: {
+          encrypt: false,
+          trustServerCertificate: true
+        },
+      },
   }
-);
-
+)

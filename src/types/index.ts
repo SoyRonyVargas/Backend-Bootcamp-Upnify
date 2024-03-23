@@ -1,42 +1,50 @@
-import { NextFunction, Request , Response } from "express";
-// import { ValidationError } from 'express-validator'
-import { IncomingHttpHeaders } from "http";
-// import { JwtPayload } from "jsonwebtoken"
+import { type NextFunction, type Request, type Response } from 'express'
+import { type IncomingHttpHeaders } from 'http'
+import { type JwtPayload } from 'jsonwebtoken'
+// import { type UsuarioAttributes } from '../models/usuario'
 
-// export type JWTAuthPayload = JwtPayload & {
-//   id: string
-// }
+// Tipo para el payload de JWT que incluye la propiedad 'id'
+export type JWTAuthPayload = JwtPayload & {
+  id_usuario: number
+}
 
-type CustomRequest<T ,T2, TBody , PayloadType> = Request<T ,T2, TBody> & {
+// Tipo personalizado para las solicitudes de Express que incluyen un payload JWT en headers
+export type CustomRequest<T, T2, TBody, PayloadType, ReqQuery> = Request<T, T2, TBody, ReqQuery> & {
   payload?: PayloadType
-  headers           : IncomingHttpHeaders & {
+  headers: IncomingHttpHeaders & {
     'x-auth-token'?: string
   }
 }
 
-export type TypedRequest<T , BodyRequest , PayloadBody = any , ReqParams = any> = (
-  ( 
-    req: CustomRequest<ReqParams , any, BodyRequest, PayloadBody> , 
-    res: Response<BasicResponse<T>> , 
-    next: NextFunction 
+// Tipo para controladores de Express que toman y devuelven diferentes tipos de datos
+export type Controller<TResponse = any, BodyRequest = null, PayloadBody = JWTAuthPayload, ReqParams = any, ReqQuery = any> = (
+  (
+    req: CustomRequest<ReqParams, any, BodyRequest, PayloadBody | JWTAuthPayload, ReqQuery>,
+    res: Response<BasicResponse<TResponse>>,
+    next: NextFunction
   ) => Promise<any>
 )
 
-// export type TypedMiddleware<Payload> = (
-//   ( 
-//     req: CustomRequest<any ,any , any , Payload>, 
-//     res: Response<ValidationError[] | undefined>, 
-//     next: NextFunction 
-//   ) => void
-// )
+// Tipo para middlewares de Express que trabajan con un payload específico
+export type Middleware<Payload, TResponse = any> = (
+  (
+    req: CustomRequest<any, any, any, Payload, any>,
+    res: Response<BasicResponse<TResponse>>,
+    next: NextFunction
+  ) => void
+)
 
-
+// Interfaz para respuestas básicas con estructura común
 export interface BasicResponse<T> {
-  ok: boolean
+  ok?: boolean
   msg?: string
-  data: T
+  data?: T
+  errors?: any
 }
 
+// Interfaz específica para respuestas de autenticación
 export interface ResponseAuth extends BasicResponse<null> {
 
 }
+
+// export type UserLogin = Pick<UsuarioAttributes, 'correo' | 'password'>
