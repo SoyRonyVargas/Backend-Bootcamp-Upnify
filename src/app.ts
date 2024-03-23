@@ -7,6 +7,7 @@ import { sequelize } from './database';
 // ROUTERS
 import usuariosRouter from './router/usuarios.routes'
 import clientesRouter from './router/clientes.routes'
+import authRouter from './router/auth.routes'
 
 import { getConnection } from './database/getConnection';
 import { initModels } from './models/init-models';
@@ -22,6 +23,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(express.static('public'))
 app.use(express.static('./src/public'))
+
+app.use("/auth", authRouter)
 app.use("/usuarios", usuariosRouter)
 app.use("/clientes", clientesRouter)
 

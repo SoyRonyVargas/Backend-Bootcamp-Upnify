@@ -1,4 +1,4 @@
-import Usuario from "../models/usuario.model";
+import { Usuario } from "../models/Usuario";
 import { Controller } from "../types";
 
 export const getUsuariosCtrl : Controller = async (req, res) => {
@@ -29,7 +29,7 @@ type CreateUsuarioDTO = {
     CONTRASENIA: string
     APELLIDOS: string
     CORREO: string
-    NOMBRE: String
+    NOMBRE: string
 }
 
 export const createUsuarioCtrl : Controller<any, CreateUsuarioDTO> = async (req, res) => {
@@ -74,7 +74,7 @@ type EditUsuarioDTO = {
     CONTRASENIA: string
     APELLIDOS: string
     CORREO: string
-    NOMBRE: String
+    NOMBRE: string
 }
 
 export const actualizarUsuarioCtrl : Controller<any, EditUsuarioDTO> = async (req, res) => {
@@ -94,8 +94,13 @@ export const actualizarUsuarioCtrl : Controller<any, EditUsuarioDTO> = async (re
             msg: "Usuario invalido"
         })
 
+        const { IDUSUARIO , ...rest } = payload
+
         usuarioExistente.set({
-            ...payload
+            APELLIDOS: rest.APELLIDOS,
+            CONTRASENIA: rest.CONTRASENIA,
+            CORREO: rest.CORREO,
+            NOMBRE: rest.NOMBRE
         })
 
         await usuarioExistente.save()
@@ -117,10 +122,6 @@ export const actualizarUsuarioCtrl : Controller<any, EditUsuarioDTO> = async (re
 export const eliminarUsuarioCtrl : Controller<any, null, { IDUSUARIO: string }> = async (req, res) => {
 
     try {
-        
-        const payload = req.body
-        
-        console.log('req.params');
         
         const id = req.params.IDUSUARIO
         
