@@ -9,7 +9,7 @@ export interface ProveedoreAttributes {
 
 export type ProveedorePk = "IDPROVEEDOR";
 export type ProveedoreId = Proveedore[ProveedorePk];
-export type ProveedoreOptionalAttributes = "NOMBRE" | "FECHAHORA";
+export type ProveedoreOptionalAttributes = "IDPROVEEDOR" | "NOMBRE" | "FECHAHORA";
 export type ProveedoreCreationAttributes = Optional<ProveedoreAttributes, ProveedoreOptionalAttributes>;
 
 export class Proveedore extends Model<ProveedoreAttributes, ProveedoreCreationAttributes> implements ProveedoreAttributes {
@@ -21,6 +21,7 @@ export class Proveedore extends Model<ProveedoreAttributes, ProveedoreCreationAt
   static initModel(sequelize: Sequelize.Sequelize): typeof Proveedore {
     return Proveedore.init({
     IDPROVEEDOR: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
@@ -41,7 +42,7 @@ export class Proveedore extends Model<ProveedoreAttributes, ProveedoreCreationAt
     timestamps: false,
     indexes: [
       {
-        name: "PK__PROVEEDO__4EB245E4ABA9FE67",
+        name: "PK__tmp_ms_x__4EB245E4B7F1189A",
         unique: true,
         fields: [
           { name: "IDPROVEEDOR" },

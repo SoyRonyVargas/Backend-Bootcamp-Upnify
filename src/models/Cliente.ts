@@ -10,7 +10,7 @@ export interface ClienteAttributes {
 
 export type ClientePk = "IDCLIENTE";
 export type ClienteId = Cliente[ClientePk];
-export type ClienteOptionalAttributes = "NOMBRE" | "APELLIDOS" | "FECHAHORA";
+export type ClienteOptionalAttributes = "IDCLIENTE" | "NOMBRE" | "APELLIDOS" | "FECHAHORA";
 export type ClienteCreationAttributes = Optional<ClienteAttributes, ClienteOptionalAttributes>;
 
 export class Cliente extends Model<ClienteAttributes, ClienteCreationAttributes> implements ClienteAttributes {
@@ -23,6 +23,7 @@ export class Cliente extends Model<ClienteAttributes, ClienteCreationAttributes>
   static initModel(sequelize: Sequelize.Sequelize): typeof Cliente {
     return Cliente.init({
     IDCLIENTE: {
+      autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
@@ -46,7 +47,7 @@ export class Cliente extends Model<ClienteAttributes, ClienteCreationAttributes>
     timestamps: false,
     indexes: [
       {
-        name: "PK__CLIENTES__1EA344C2D2C39773",
+        name: "PK__tmp_ms_x__1EA344C2461089FC",
         unique: true,
         fields: [
           { name: "IDCLIENTE" },
