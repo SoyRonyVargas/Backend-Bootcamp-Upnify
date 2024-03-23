@@ -1,0 +1,53 @@
+import * as Sequelize from 'sequelize';
+import { DataTypes, Model, Optional } from 'sequelize';
+
+export interface ProveedoreAttributes {
+  IDPROVEEDOR: number;
+  NOMBRE?: string;
+  FECHAHORA?: Date;
+}
+
+export type ProveedorePk = "IDPROVEEDOR";
+export type ProveedoreId = Proveedore[ProveedorePk];
+export type ProveedoreOptionalAttributes = "NOMBRE" | "FECHAHORA";
+export type ProveedoreCreationAttributes = Optional<ProveedoreAttributes, ProveedoreOptionalAttributes>;
+
+export class Proveedore extends Model<ProveedoreAttributes, ProveedoreCreationAttributes> implements ProveedoreAttributes {
+  IDPROVEEDOR!: number;
+  NOMBRE?: string;
+  FECHAHORA?: Date;
+
+
+  static initModel(sequelize: Sequelize.Sequelize): typeof Proveedore {
+    return Proveedore.init({
+    IDPROVEEDOR: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    NOMBRE: {
+      type: DataTypes.TEXT,
+      allowNull: true
+    },
+    FECHAHORA: {
+      type: DataTypes.DATE,
+      allowNull: true,
+      defaultValue: Sequelize.Sequelize.fn('getdate')
+    }
+  }, {
+    sequelize,
+    tableName: 'PROVEEDORES',
+    schema: 'dbo',
+    timestamps: false,
+    indexes: [
+      {
+        name: "PK__PROVEEDO__4EB245E4ABA9FE67",
+        unique: true,
+        fields: [
+          { name: "IDPROVEEDOR" },
+        ]
+      },
+    ]
+  });
+  }
+}
