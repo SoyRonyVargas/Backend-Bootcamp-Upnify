@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Vite + TS</title>
+  </head>
+  <body>
+    <!-- <div id="app"></div> -->
+    <nav class="flex items-center p-4 py-6">
+      <ul class="flex items-center justify-center w-full">
+        <li class="mr-5">
+          <a href="">
+            Home
+          </a>
+        </li>
+        <li class="mr-5">
+          <a href="">
+            Productos
+          </a>
+        </li>
+        <li>
+          <a href="">
+            Categorias
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="grid">
+      <div class="item">
+        <div class="box"></div>
+      </div>
+      <div class="item">
+        <ul class="slider">
+          
+          <li id="slide1">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3947459/car.jpg"/>
+          </li>
+          
+          <li id="slide2">
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3947459/sunset.jpg"/>
+          </li>
+          
+          <li id="slide3">
+            <img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/1B198B2046A7A40129694795EDD68088730AC9273D6AFAB345D71A38B52893A6/scale?width=1200&amp;aspectRatio=1.78&amp;format=webp" alt="">
+          </li>
+        </ul>
+        
+        <ul class="menu">
+          <li>
+            <a href="#slide1">1</a>
+          </li>
+          <li>
+            <a href="#slide2">2</a>
+          </li>
+           <li>
+            <a href="#slide3">3</a>
+          </li>
+        </ul>
+        
+      </div>
+      <div class="item"><span>Position</span></div>
+      <div class="item">Place Content</div>
+    </div>
+
+    <form class="login mx-auto max-w-[500px] bg-white p-8 mt-10 rounded-lg mb-10">
+
+      <h2 class="text-3xl mb-5 font-bold tracking-wide">Iniciar Sesión</h2>
+
+      <div class="flex flex-col mb-5">
+        <label class="font-bold text-xl mb-3">Correo</label>
+        <input class="py-3 rounded-lg px-2.5 bg-gray-200 border-1 border-black" type="text" placeholder="correo@gmail.com">
+      </div>
+      
+      <div class="flex flex-col mb-5">
+        <label class="font-bold text-xl mb-3">Contraseña</label>
+        <input class="py-3 rounded-lg px-2.5 bg-gray-200 border-1 border-black" type="pasword" placeholder="12345">
+      </div>
+      
+      <div class="flex flex-col justify-start">
+        <button type="submit" class="p-3 py-2.5 bg-blue-500 block max-w-[200px] rounded-lg font-semibold text-white tracking-4">
+          Iniciar Sesión
+        </button>
+      </div>
+
+    </form>
+    
+    <script type="module" src="/src/main.ts"></script>
+
+  </body>
+</html>
+
+<style>
+  :root
+  {
+    --background-1: #61A0AF;
+    --bg-todos: background-color;
+  }
+  *
+  {
+    box-sizing: border-box;
+  }
+  body
+  {
+    padding: 0;
+    margin: 0;
+    font-family: 'Arial';
+  }
+  .grid
+  {
+    place-items: center;
+    display: grid;
+    grid-template-columns: repeat( 2 ,1fr );
+    grid-template-rows: repeat( 2 ,1fr );
+    height: 100vh;
+  }
+  .grid .item
+  {
+    /* border: 1px solid #000; */
+    /* background-color: red; */
+    width: 100%;
+    height: 100%;
+  }
+  .item:nth-of-type(1)
+  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--background-1);
+  }
+  .item:nth-of-type(2)
+  {
+    display: grid;
+    place-items: center;
+    background-color: #F5D491;
+    padding: 30px;
+  }
+  .item:nth-of-type(3)
+  {
+    position: relative;
+    background-color: #F9B9B7;
+  }
+  .item:nth-of-type(3) > span
+  {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .item:nth-of-type(4)
+  {
+    background-color: #96C9DC;
+    display: grid;
+    place-content: center;
+  }
+
+  .box
+  {
+    width: 100px;
+    height: 100px;
+    background-color: #edc74c;
+    border-radius: 100%;
+    animation-duration: 1.5s;
+    animation-name: animacion;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease; /* Esto hará que la animación sea más suave */
+    animation-delay: 1.5s; /* Retraso al reiniciar la animación */
+    transform: translateX(0%);
+  }
+
+  @keyframes animacion {
+    0%
+    {
+      transform: translateX(0%);
+    }
+    50%
+    {
+      transform: translateX(200%);
+    }
+    85%
+    {
+      transform: translateX(-200%);
+    }
+    100%
+    {
+      transform: translateX(-0%);
+    }
+  }
+
+  body{
+  background-color: lightgrey;
+  font-family: sans-serif;
+}
+
+.container{
+  margin: auto;
+  background-color: white;
+  width: 100%;
+  padding: 30px;
+}
+
+ul, li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+ul.slider{
+  position: relative;
+  width: 100%;
+  height: 200px;
+}
+
+ul.slider li {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    opacity: 0;
+    width: inherit;
+    height: inherit;
+    transition: opacity .5s;
+}
+
+ul.slider li img{
+  width: 100%;
+  max-width: 350px;
+  height: 200px;
+  object-fit: cover;
+  margin:  0 auto;
+  display: block;
+}
+
+ul.slider li:first-child {
+  /* opacity: 1; */
+   /*Mostramos el primer <li>*/
+}
+
+ul.slider li:target {
+  /*Mostramos el <li> del enlace que pulsemos*/
+  opacity: 1; 
+}
+
+.menu{
+  text-align: center;
+  margin: 20px;
+}
+
+.menu li{
+  display: inline-block;
+  text-align: center;
+}
+
+.menu li a{
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+  background-color: grey;
+  padding: 10px;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  border-radius: 100%;
+}
+
+</style>
